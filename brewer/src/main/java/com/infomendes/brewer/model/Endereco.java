@@ -1,11 +1,14 @@
 package com.infomendes.brewer.model;
 
-public class Endereco {
+import java.io.Serializable;
 
+public class Endereco implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private String logradouro;
 	private String numero;
 	private String complemento;
-	private Long   cep;
+	private Long cep;
 	private String cidade;
 	private String uf;
 
