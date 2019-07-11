@@ -1,15 +1,18 @@
 package com.infomendes.brewer.model;
 
+import java.io.Serializable;
+
 import com.infomendes.brewer.model.enums.TipoPessoa;
 
-public class Cliente {
+public class Cliente implements Serializable {
 
-	private String     nome;
-	private Long       cpf;
-	private Long       cnpj;
-	private String     email;
-	private Long       telefone;
-	private Endereco   endereco;
+	private static final long serialVersionUID = 1L;
+	private String nome;
+	private Long cpf;
+	private Long cnpj;
+	private String email;
+	private Long telefone;
+	private Endereco endereco;
 	private TipoPessoa tipoPessoa;
 
 	public String getNome() {

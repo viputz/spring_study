@@ -1,5 +1,7 @@
 package com.infomendes.brewer.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -12,6 +14,8 @@ import com.infomendes.brewer.model.Cerveja;
 
 @Controller
 public class CervejasController {
+
+	private static final Logger logger = LoggerFactory.getLogger(CervejasController.class);
 
 	@GetMapping("/cervejas/novo")
 	public String novo(Cerveja cerveja) {
