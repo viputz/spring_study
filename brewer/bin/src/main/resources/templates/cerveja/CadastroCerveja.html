@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pt"
 		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="'layout/LayoutPadrao'">
 		
-<head></head>
+<head>
+	<title>Cadastro de Cerveja</title>
+</head>
 
 <body>	
 <section layout:fragment="conteudo">
@@ -10,7 +12,7 @@
 	<div class="page-header">
 		<div class="container-fluid">
 			<h1>
-				Cadastro de cerveja
+				Cadastro de Cerveja
 			</h1>
 		</div>
 	</div>
@@ -35,9 +37,11 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
-				<label for="input-produto-descricao">Descrição</label>
-				<textarea id="input-produto-descricao" rows="3" class="form-control"></textarea>
+			<div class="row">
+				<div class="col-sm-12 form-group">
+					<label for="input-produto-descricao">Descrição</label>
+					<textarea id="input-produto-descricao" rows="3" class="form-control"></textarea>
+				</div>
 			</div>
 	
 			<div class="row">
