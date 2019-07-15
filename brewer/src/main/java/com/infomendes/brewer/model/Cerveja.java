@@ -21,7 +21,7 @@ import com.infomendes.brewer.model.enums.Origem;
 import com.infomendes.brewer.model.enums.Sabor;
 
 @Entity
-@Table(name = "cerveja")
+@Table(name = "cerveja", schema = "vinicius")
 public class Cerveja implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -41,11 +41,12 @@ public class Cerveja implements Serializable {
 
 	private BigDecimal valor;
 
-	@Column(name = "teor_alcolico")
+	@Column(name = "teor_alcoolico")
 	private BigDecimal teorAlcolico;
 
 	private BigDecimal comissao;
 
+	@Column(name = "quantidade_estoque")
 	private Integer quantidadeEstoque;
 
 	@Enumerated(EnumType.STRING)
@@ -55,7 +56,7 @@ public class Cerveja implements Serializable {
 	private Sabor sabor;
 
 	@ManyToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "id_estilo")
 	private Estilo estilo;
 
 	public String getSku() {
