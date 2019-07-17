@@ -42,7 +42,7 @@ public class Cerveja implements Serializable {
 	private BigDecimal valor;
 
 	@Column(name = "teor_alcoolico")
-	private BigDecimal teorAlcolico;
+	private BigDecimal teorAlcoolico;
 
 	private BigDecimal comissao;
 
@@ -91,12 +91,12 @@ public class Cerveja implements Serializable {
 		this.valor = valor;
 	}
 
-	public BigDecimal getTeorAlcolico() {
-		return teorAlcolico;
+	public BigDecimal getTeorAlcoolico() {
+		return teorAlcoolico;
 	}
 
-	public void setTeorAlcolico(BigDecimal teorAlcolico) {
-		this.teorAlcolico = teorAlcolico;
+	public void setTeorAlcoolico(BigDecimal teorAlcolico) {
+		this.teorAlcoolico = teorAlcolico;
 	}
 
 	public BigDecimal getComissao() {
@@ -146,6 +146,22 @@ public class Cerveja implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public Sabor getSabor() {
+		return sabor;
+	}
+
+	public void setSabor(Sabor sabor) {
+		this.sabor = sabor;
+	}
+
+	public Estilo getEstilo() {
+		return estilo;
+	}
+
+	public void setEstilo(Estilo estilo) {
+		this.estilo = estilo;
 	}
 
 }
