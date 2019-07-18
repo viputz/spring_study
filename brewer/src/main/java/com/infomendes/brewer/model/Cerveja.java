@@ -19,6 +19,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import com.infomendes.brewer.model.enums.Origem;
 import com.infomendes.brewer.model.enums.Sabor;
+import com.infomendes.brewer.validation.SKU;
 
 @Entity
 @Table(name = "cerveja", schema = "vinicius")
@@ -30,6 +31,7 @@ public class Cerveja implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@SKU	
 	@NotBlank(message = "SKU é obrigatório")
 	private String sku;
 
