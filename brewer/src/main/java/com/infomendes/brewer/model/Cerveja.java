@@ -13,15 +13,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.infomendes.brewer.model.enums.Origem;
 import com.infomendes.brewer.model.enums.Sabor;
+import com.infomendes.brewer.validation.SKU;
 
 @Entity
-@Table(name = "cerveja")
+@Table(name = "cerveja", schema = "vinicius")
 public class Cerveja implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -30,6 +34,7 @@ public class Cerveja implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@SKU	
 	@NotBlank(message = "SKU é obrigatório")
 	private String sku;
 
@@ -39,13 +44,17 @@ public class Cerveja implements Serializable {
 	@Size(min = 1, max = 50, message = "Informe uma descricao com no minimo 1 caracteres e maximo 50")
 	private String descricao;
 
+	@NotNull(message = "Valor é obrigatório")
+	@DecimalMin(value = "0.50", message = "O valor da cerveja deve ser maior que R$0,50")
+	@DecimalMax(value = "9999999.99", message = "O valor da cerveja deve ser menor que R$9.999.999,99")
 	private BigDecimal valor;
 
-	@Column(name = "teor_alcolico")
-	private BigDecimal teorAlcolico;
+	@Column(name = "teor_alcoolico")
+	private BigDecimal teorAlcoolico;
 
 	private BigDecimal comissao;
 
+	@Column(name = "quantidade_estoque")
 	private Integer quantidadeEstoque;
 
 	@Enumerated(EnumType.STRING)
@@ -55,7 +64,7 @@ public class Cerveja implements Serializable {
 	private Sabor sabor;
 
 	@ManyToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "id_estilo")
 	private Estilo estilo;
 
 	public String getSku() {
@@ -90,12 +99,12 @@ public class Cerveja implements Serializable {
 		this.valor = valor;
 	}
 
-	public BigDecimal getTeorAlcolico() {
-		return teorAlcolico;
+	public BigDecimal getTeorAlcoolico() {
+		return teorAlcoolico;
 	}
 
-	public void setTeorAlcolico(BigDecimal teorAlcolico) {
-		this.teorAlcolico = teorAlcolico;
+	public void setTeorAlcoolico(BigDecimal teorAlcolico) {
+		this.teorAlcoolico = teorAlcolico;
 	}
 
 	public BigDecimal getComissao() {
@@ -145,6 +154,22 @@ public class Cerveja implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public Sabor getSabor() {
+		return sabor;
+	}
+
+	public void setSabor(Sabor sabor) {
+		this.sabor = sabor;
+	}
+
+	public Estilo getEstilo() {
+		return estilo;
+	}
+
+	public void setEstilo(Estilo estilo) {
+		this.estilo = estilo;
 	}
 
 }
