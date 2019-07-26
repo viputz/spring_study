@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Table(name = "estilo", schema = "vinicius")
 public class Estilo implements Serializable {
@@ -20,6 +22,7 @@ public class Estilo implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotBlank(message = "O nome é obrigatório.")
 	private String nome;
 
 	@OneToMany(mappedBy = "estilo")
