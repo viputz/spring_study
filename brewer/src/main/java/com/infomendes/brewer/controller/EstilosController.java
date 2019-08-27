@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -19,18 +20,19 @@ import com.infomendes.brewer.service.EstiloService;
 import com.infomendes.brewer.service.exception.NomeEstiloJaCadastradoException;
 
 @Controller
+@RequestMapping("/estilos")
 public class EstilosController {
 
 	@Autowired
 	private EstiloService estiloService;
 
-	@GetMapping("/estilos/novo")
+	@GetMapping("/novo")
 	public ModelAndView novo(Estilo estilo) {
 		ModelAndView mv = new ModelAndView("estilo/CadastroEstilo");
 		return mv;
 	}
 
-	@PostMapping("/estilos/novo")
+	@PostMapping("/novo")
 	public ModelAndView cadastrar(@Valid Estilo estilo, BindingResult result, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
@@ -43,25 +45,19 @@ public class EstilosController {
 			result.rejectValue("nome", e.getMessage(), e.getMessage());
 			return novo(estilo);
 		}
+		
 		attributes.addFlashAttribute("mensagem", "Cadastrado com sucesso");
-
 		return new ModelAndView("redirect:/estilos/novo");
 	}
 
-	@PostMapping(value = "/estilos", consumes = { MediaType.APPLICATION_JSON_VALUE })
+	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody ResponseEntity<?> salvarAjax(@RequestBody @Valid Estilo estilo, BindingResult result) {
 
 		if (result.hasErrors()) {
 			return ResponseEntity.badRequest().body(result.getFieldError("nome").getDefaultMessage());
 		}
 
-		try {
-
-			estilo = estiloService.salvar(estilo);
-
-		} catch (NomeEstiloJaCadastradoException e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}
+		estilo = estiloService.salvar(estilo);
 
 		return ResponseEntity.ok(estilo);
 	}
