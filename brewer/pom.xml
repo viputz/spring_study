@@ -40,7 +40,7 @@
 		<hibernate.version>5.1.0.Final</hibernate.version>
 		
 		<!-- Postgres connector version -->
-		<postgres.version>42.2.6</postgres.version>
+		<postgres.version>42.4.1</postgres.version>
 		
 		<!-- Spring Data JPA -->
 		<spring-data-jpa.version>1.10.2.RELEASE</spring-data-jpa.version>
